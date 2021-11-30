@@ -1,0 +1,24 @@
+<div>
+    <li class="nest-item" (mouseover)="showItemOptions()" (mouseout)="hideItemOptions()">
+        <div [class]="item.type" class="nest-item__details">
+            <img [src]="item.type === 'file' ? '/assets/file-regular.svg' : '/assets/folder-open-regular.svg'" class="nest-item__image" />
+            <p *ngIf="item && item.name" class="nest-item__name">{{item.name}}</p>
+            <div class="nest-items__actions">
+                <button *ngIf="item.type === 'folder'" class="nest-item__action" (click)="onShowAddForm()">+</button>
+                <button class="nest-item__action" (click)="removeItem()">&#10005;</button>
+            </div>
+        </div>
+        <div *ngIf="item.items && item.items.length">
+            <app-list [items]="item.items"></app-list>
+        </div>
+    </li>
+    <li *ngIf="showForm && item.type === 'folder'" class="nest-actions">
+        <div *ngIf="!showAddForm">
+            <button (click)="onClick('folder')">Folder</button>
+            <button (click)="onClick('file')">File</button>
+        </div>
+        <div *ngIf="showAddForm">
+            <app-add-form [items]="item.items" [type]="type" (success)="onSuccess()" (remove)="onHideForm()"></app-add-form>
+        </div>
+    </li>
+</div>

@@ -1,0 +1,3 @@
+<ul *ngIf="items && items.length">
+    <app-nest *ngFor="let item of items; let itemIndex=index;" [item]="item" [items]="items" [itemIndex]="itemIndex"></app-nest>
+</ul>

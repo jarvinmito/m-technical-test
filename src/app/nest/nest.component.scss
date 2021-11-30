@@ -1,0 +1,31 @@
+li {
+    position: relative;
+    list-style: none;
+
+    & > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+}
+
+.nest-item {
+    min-width: 180px;
+    &__image {
+        height: 1rem;
+    }
+
+    &__image,
+    &__name {
+        margin-right: 0.5rem;
+    }
+
+    &__actions {
+        display: none;
+
+        .nest-items:hover & {
+            display: flex;
+        }
+    }
+}
