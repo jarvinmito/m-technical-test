@@ -6,6 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+  // Depth is only used for styling
   @Input() depth: number;
   @Input() items: Array<any> | undefined;
   constructor() {

@@ -20,7 +20,6 @@ export class AppComponent {
     // ] },
     // { name: 'Smaple', type: 'folder' },
   ];
-
   showRootForm = false;
   // Used specific function to avoid multiple trigger issues
   showRootAddForm () {

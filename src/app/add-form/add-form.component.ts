@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./add-form.component.scss']
 })
 export class AddFormComponent implements OnInit {
-  public name = "";
+  public name = '';
   @Input() type: String | undefined;
   @Input() items: Array<object> | undefined;
   @Output() success = new EventEmitter()
@@ -17,8 +17,12 @@ export class AddFormComponent implements OnInit {
   }
 
   onClick () {
-    console.log('this name', this.name, this.items)
+    /*
+      Initial onClick function to add the item in the items Array
+      Resets array items if undefined
+    */
     if (!this.items) this.items = []
+    // Only add item if not blank
     if (this.name.trim() !== '') {
       this.items.push({
         type: this.type,
@@ -26,10 +30,12 @@ export class AddFormComponent implements OnInit {
         items: []
       })
     }
+    // Emit success function, ready for future integrations if ever
     this.success.emit()
   }
 
   onClose () {
+    // Emit remove function, ready for future integrations if ever
     this.remove.emit()
   }
 
