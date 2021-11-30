@@ -1,31 +1,102 @@
-li {
+.nest-item {
     position: relative;
     list-style: none;
+    padding: 0.5rem 2rem;
+    $self: &;
 
-    & > div {
+    &:not(.nest-item--root) {
+        &:before {
+            content: '';
+            position: absolute;
+            top: 1.8rem;
+            left: 1.1rem;
+            width: 0.5rem;
+            height: 0.1rem;
+            background-color: var(--color-black);
+        }
+    
+        &:after {
+            content: '';
+            position: absolute;
+            top: -1.6rem;
+            left: 1.1rem;
+            width: 0.1rem;
+            height: 100%;
+            z-index: -1;
+            background-color: var(--color-black);
+        }
+    }
+
+    &__details {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 1.4rem;
+        height: 2.5rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 0.3rem;
+        border: 1px solid transparent;
+
+        &:not(.no-hover):hover {
+            border-color: var(--color-black);
+            .nest-item__actions { opacity: 1; }
+        }
+    }
+    &__image {
+        height: 1.6rem;
+        width: 1.6rem;
+        & > img {
+            margin: auto;
+            height: 1.6rem;
+        }
+    }
+
+    &__name {
+        margin: 0 0.5rem;
+    }
+
+    &__actions {
+        opacity: 0;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
+        gap: 0.3rem;
+    }
+
+    &__action {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 2rem;
+        font-size: 1rem;
+        background: var(--color-black);
+        color: var(--color-white);
+        cursor: pointer;
     }
 }
 
-.nest-item {
-    min-width: 180px;
-    &__image {
-        height: 1rem;
-    }
+.nest-actions {
+    &__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.2rem;
+        height: 2.5rem;
 
-    &__image,
-    &__name {
-        margin-right: 0.5rem;
-    }
-
-    &__actions {
-        display: none;
-
-        .nest-items:hover & {
-            display: flex;
+        & > button {
+            cursor: pointer;
+            border: 1px solid var(--color-black);
         }
     }
+}
+
+.list {
+    overflow: hidden;
 }

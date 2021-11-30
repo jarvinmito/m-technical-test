@@ -1,7 +1,8 @@
-<div>
+<div class="add-form">
     <!-- svg here -->
-    <input [(ngModel)]="name" type="text" />
-    <button (click)="onClick()">&check;</button>
-    <button (click)="onClose()">&#10005;</button>
+    <img [src]="type === 'file' ? '/assets/file-regular.svg' : '/assets/folder-open-regular.svg'" class="add-form__image" />
+    <input [(ngModel)]="name" type="text" class="add-form__textbox" />
+    <button class="add-form__action" (click)="onClick()">&check;</button>
+    <button class="add-form__action add-form__action--secondary" (click)="onClose()">&#10005;</button>
 </div>
 

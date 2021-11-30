@@ -6,51 +6,45 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./nest.component.scss']
 })
 export class NestComponent implements OnInit {
-  showItemButtons = false;
+  // Shows the Form
   showForm = false;
-  showAddForm = false;
+  // Shows the "File" and "Folder" buttons
+  showAddOptions = false;
   type = 'folder';
+  // Included depth for styling purposes
+  @Input() depth: number;
+  // Current item
   @Input() item: any | undefined;
+  // Reference to all the sibling items
   @Input() items: any | undefined;
+  // Index of the item
   @Input() itemIndex: any | undefined;
-  constructor() { }
+  constructor() {
+    this.depth = 0
+  }
 
   ngOnInit(): void {
   }
   
-  onClick (type: string) {
-    this.showAddForm = true
+  onShowAddForm (type: string) {
+    // Shows the add form
+    this.showForm = true
     this.type = type
   }
 
-  showItemOptions () {
-    this.showItemButtons = true
-  }
-
-  hideItemOptions () {
-    this.showItemButtons = false
-  }
-
-  onSuccess () {
-    console.log('Success')
-    this.type = 'folder'
-    this.showAddForm = false
-  }
-
-  onHideForm () {
-    this.showAddForm = false
-  }
-
-  onShowAddForm () {
-    this.showForm = true  
-  }
   onHideAddForm () {
+    // Resets to default
+    this.type = 'folder'
     this.showForm = false
+    this.showAddOptions = false
   }
 
-  removeItem () {
-    console.log('remove item')
+  onShowAddOptions () {
+    // Shows the "file" and "folder" buttons
+    this.showAddOptions = true
+  }
+
+  onRemoveItem () {
     this.items.splice(this.itemIndex, 1)
   }
-
 }

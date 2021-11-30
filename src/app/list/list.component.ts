@@ -6,8 +6,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+  @Input() depth: number;
   @Input() items: Array<any> | undefined;
-  constructor() { }
+  constructor() {
+    this.depth = 0
+  }
 
   ngOnInit(): void {
   }
