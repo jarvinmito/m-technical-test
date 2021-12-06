@@ -5,6 +5,13 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    min-height: 100vh;
 }
 
 a,
@@ -46,6 +53,11 @@ svg#clouds {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 0.5rem;
+    flex-grow: 1;
+
+    &:focus-visible {
+        outline: none;
+    }
 
     &__form {
         margin-left: 2rem;

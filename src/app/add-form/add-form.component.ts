@@ -1,22 +1,25 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterContentInit, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-add-form',
   templateUrl: './add-form.component.html',
   styleUrls: ['./add-form.component.scss']
 })
-export class AddFormComponent implements OnInit {
+
+export class AddFormComponent implements AfterContentInit {
   public name = '';
   @Input() type: String | undefined;
   @Input() items: Array<object> | undefined;
   @Output() success = new EventEmitter()
   @Output() remove = new EventEmitter()
-  constructor() { }
+  constructor(private element: ElementRef) { }
 
-  ngOnInit(): void {
+  ngAfterContentInit(): void {
+    console.log('Add form focusing', this.element)
+    this.element.nativeElement.firstChild.childNodes[1].focus()
   }
 
-  onClick () {
+  onSave () {
     /*
       Initial onClick function to add the item in the items Array
       Resets array items if undefined
@@ -27,6 +30,7 @@ export class AddFormComponent implements OnInit {
       this.items.push({
         type: this.type,
         name: this.name,
+        active: false,
         items: []
       })
     }
@@ -38,5 +42,4 @@ export class AddFormComponent implements OnInit {
     // Emit remove function, ready for future integrations if ever
     this.remove.emit()
   }
-
 }

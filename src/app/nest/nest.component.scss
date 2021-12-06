@@ -39,7 +39,8 @@
         border-radius: 0.3rem;
         border: 0.1rem solid transparent;
 
-        &:not(.no-hover):hover {
+        &:not(.no-hover):hover,
+        &.active {
             border-color: var(--color-black);
             .nest-item__actions { opacity: 1; }
         }

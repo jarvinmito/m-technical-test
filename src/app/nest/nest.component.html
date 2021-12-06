@@ -1,6 +1,6 @@
 <!-- Show list per item -->
-<li [ngClass]="{'nest-item--root': !depth}" class="nest-item">
-    <div [class]="item.type" class="nest-item__details">
+<li [ngClass]="{'nest-item--root': !depth}" class="nest-item" [attr.aria-label]="item.name" [id]="item.name + '_' + item.type + '_' + itemIndex">
+    <div [class]="item.type" class="nest-item__details" [class.active]="item.active" [tabIndex]="item.active ? '0' : '-1'" (keydown)="onEnterKey($event)">
         <div class="nest-item__image">
             <img [src]="item.type === 'file' ? '/assets/file-regular.svg' : '/assets/folder-open-regular.svg'" />
         </div>
