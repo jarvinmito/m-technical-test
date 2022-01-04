@@ -1,10 +1,11 @@
-import { Component, Input, AfterContentInit, ElementRef } from '@angular/core';
+import { Component, Input, AfterContentInit, ElementRef, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterContentInit {
+  @ViewChild('container', { read: ElementRef }) container!: ElementRef;
   // Sample title
   title = 'file-tree';
   // Items list with commented samples for faster UI testing
@@ -33,10 +34,12 @@ export class AppComponent implements AfterContentInit {
     this.showRootForm = false;
   }
 
-  focusOnRoot () {
-    const content = document.getElementById('file-tree-container')
-    if (content) content.focus()
-  }
+  // focusOnRoot () {
+  //   // Focus on Root container of the file tree
+  //   setTimeout(() => {
+  //     this.container.nativeElement.focus()
+  //   }, 300);
+  // }
 
   selectingNode (e: KeyboardEvent) {
     // console.log('Selecting Node', e.target, this.element, document.getElementById('file-tree-list'))
@@ -89,7 +92,7 @@ export class AppComponent implements AfterContentInit {
         // Hide the Root Add Form
         this.hideRootAddForm()
         // Refocus
-        this.focusOnRoot()
+        // this.focusOnRoot()
         break
       default: // nothing
         break
@@ -99,6 +102,6 @@ export class AppComponent implements AfterContentInit {
   ngAfterContentInit (): void {
     // Focus on div
     // console.log('Element loaded', this.element)
-    this.focusOnRoot()
+    // this.focusOnRoot()
   }
 }

@@ -1,0 +1,63 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    padding: 0.4rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+    border-radius: 0.3rem;
+    border: 0.1rem solid transparent;
+
+    &:not(.no-hover):hover,
+    &:focus-visible {
+        border-color: var(--color-black);
+        .node-item__actions {
+            visibility: visible;
+        }
+    }
+}
+
+.node-item {
+    &__image {
+        width: 1.6rem;
+        height: 1.6rem;
+        flex-shrink: 0;
+    }
+    &__actions, &__action {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.2rem;
+    }
+    &__actions {
+        visibility: hidden;
+        &__container {
+            display: flex;
+            flex-direction: row;
+            gap: 0.4rem;
+            align-items: center;
+            border: 0.1rem solid var(--color-black);
+            padding: 0.4rem;
+            border-radius: 0.5rem;
+            line-height: 1;
+            & > button {
+                cursor: pointer;
+                display: inline-flex;
+                border: 0.1rem solid var(--color-black)
+            }
+        }
+    }
+    &__action {
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 2rem;
+        font-size: 1rem;
+        background: var(--color-black);
+        color: var(--color-white);
+        cursor: pointer;
+    }
+}

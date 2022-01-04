@@ -1,0 +1,6 @@
+<img *ngIf="node.type" [src]="renderFileType(node)" class="node-item__image" />
+{{node.name}}
+<div class="node-item__actions">
+    <button *ngIf="node.type === 'folder'" class="node-item__action" (click)="add()">&plus;</button>
+    <button class="node-item__action" (click)="remove()">&#10005;</button>
+</div>

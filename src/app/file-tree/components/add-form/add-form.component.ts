@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterContentInit, ElementRef } from '@angular/core';
-
+import { FileTreeNode } from '../../file-tree-node.model';
 @Component({
   selector: 'app-add-form',
   templateUrl: './add-form.component.html',
@@ -8,8 +8,10 @@ import { Component, OnInit, Input, Output, EventEmitter, AfterContentInit, Eleme
 
 export class AddFormComponent implements AfterContentInit {
   public name = '';
-  @Input() type: String | undefined;
-  @Input() items: Array<object> | undefined;
+  @Input() parentId!: string;
+  @Input() type!: string;
+  @Input() items!: FileTreeNode[];
+  @Output() updateList = new EventEmitter()
   @Output() success = new EventEmitter()
   @Output() remove = new EventEmitter()
   constructor(private element: ElementRef) { }
@@ -25,17 +27,20 @@ export class AddFormComponent implements AfterContentInit {
       Resets array items if undefined
     */
     if (!this.items) this.items = []
-    // Only add item if not blank
-    if (this.name.trim() !== '') {
-      this.items.push({
-        type: this.type,
-        name: this.name,
-        active: false,
-        items: []
-      })
-    }
-    // Emit success function, ready for future integrations if ever
-    this.success.emit()
+    // if (this.items && this.name.trim() !== '') {
+    //   this.updateList.emit({
+    //     parentId: this.parentId,
+    //     node: {
+    //       id: this.generateRandomID(),
+    //       type: this.type,
+    //       name: this.name,
+    //       addOptions: false,
+    //       addForm: false,
+    //       children: []
+    //     }
+    //   })
+    //   this.success.emit();
+    // }
   }
 
   onClose () {

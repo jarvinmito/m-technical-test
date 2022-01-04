@@ -55,9 +55,9 @@ svg#clouds {
     gap: 0.5rem;
     flex-grow: 1;
 
-    &:focus-visible {
-        outline: none;
-    }
+    // &:focus-visible {
+    //     outline: none;
+    // }
 
     &__form {
         margin-left: 2rem;

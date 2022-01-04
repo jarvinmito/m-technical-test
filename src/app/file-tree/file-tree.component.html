@@ -1,55 +1,17 @@
-<cdk-tree [dataSource]="dataSource" [treeControl]="treeControl" class="file-tree" cdkTrapFocus>
-    <!-- Main node item -->
-    <!-- <cdk-nested-tree-node
-        *cdkTreeNodeDef="let node"
+<cdk-tree [dataSource]="dataSource" [treeControl]="treeControl" class="file-tree" cdkTrapFocus (keydown)="onKeydown($event)" #tree>
+    <cdk-tree-node
+        *cdkTreeNodeDef="let node; when: hasChild"
+        cdkTreeNodePadding
         class="file-tree__node"
         [attr.aria-label]="node.type + ' ' + node.name"
         [class]="'file-tree__node--' + node.type"
     >
-        <div class="file-tree__node__container">
-            {{node.name}}
-            <div class="nest-item__actions">
-                <button *ngIf="item.type === 'folder'" class="nest-item__action" (click)="onShowAddOptions()">&plus;</button>
-                <button class="nest-item__action" (click)="onRemoveItem()">&#10005;</button>
-            </div>
-        </div>
-    </cdk-nested-tree-node> -->
-    <!-- Node with children -->
-    <cdk-nested-tree-node
-        *cdkTreeNodeDef="let node"
-        class="file-tree__node"
-        [attr.aria-label]="node.type + ' ' + node.name"
-        [class]="'file-tree__node--' + node.type"
-    >
-        <div class="file-tree__node__container">
-            {{node.name}}
-            <div class="file-tree__node__actions">
-                <button *ngIf="node.type === 'folder'" class="file-tree__node__action" (click)="onShowAddOptions()">&plus;</button>
-                <button class="file-tree__node__action" (click)="onRemoveItem()">&#10005;</button>
-            </div>
-        </div>
-        <div class="file-tree__node__children">
-            <!-- This is where the children nodes will be rendered -->
-            <ng-container cdkTreeNodeOutlet></ng-container>
-            <!--
-            Action Form: displays the type selection first, then the form itself
-            <div
-                *ngIf="showAddOptions && type === 'folder'"
-                class="file-tree__node"
-                [class]="'file-tree__node--' + type"
-                [attr.aria-label]="'Add node'"
-            >
-                <div class="file-tree__node__container no-hover">
-                    <div *ngIf="!showForm" class="file-tree__node__actions__container">
-                        <button (click)="onShowAddForm('file')">File</button>
-                        <button (click)="onShowAddForm('folder')">Folder</button>
-                    </div>
-                    <div *ngIf="showForm">
-                        <app-add-form [items]="[]" [type]="type" (success)="onHideAddForm()" (remove)="onHideAddForm()"></app-add-form>
-                    </div>
-                </div>
-            </div>
-            -->
-        </div>
-    </cdk-nested-tree-node>
+        <app-file-tree-item *ngIf="isNode(node); else options" [node]="node" (onAdd)="findIndexBeforeAction('add', node)" (onRemove)="findIndexBeforeAction('remove', node)"></app-file-tree-item>
+        <ng-template #options>
+            <app-add-options *ngIf="isOption(node); else form" [node]="node"></app-add-options>
+        </ng-template>
+        <ng-template #form>
+            <app-add-form *ngIf="isForm(node)"></app-add-form>
+        </ng-template>
+    </cdk-tree-node>
 </cdk-tree>

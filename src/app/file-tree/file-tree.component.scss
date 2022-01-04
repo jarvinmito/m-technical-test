@@ -29,33 +29,6 @@
             }
         }
 
-        // &__children {
-        //     position: relative;
-        //     &:before {
-        //         position: absolute;
-        //         content: '';
-        //         top: -1.5rem;
-        //         left: -1.5rem;
-        //         height: 100%;
-        //         width: 0.1rem;
-        //         background: var(--color-black);
-        //     }
-        // }
-
-        &--file,
-        &--folder {
-            background-position: 0 1rem;
-            background-repeat: no-repeat;
-        }
-
-        &--file {
-            background-image: url('/assets/file-regular.svg');
-            background-size: 1.4rem 1.4rem;
-        }
-        &--folder {
-            background-image: url('/assets/folder-open-regular.svg');
-            background-size: 1.6rem 1.6rem;
-        }
 
         &:before,
         &:after {
